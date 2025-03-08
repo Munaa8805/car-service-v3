@@ -1,6 +1,0 @@
-<?php
-
-
-
-
-loadView("login");

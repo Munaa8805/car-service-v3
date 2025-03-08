@@ -1,6 +1,9 @@
    <!-- Topbar Start -->
 
    <?php
+
+    use Framework\Database;
+
     $config = require basePath('config/db.php');
     $db = new Database($config);
     $query = $db->query("SELECT * FROM contact");

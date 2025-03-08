@@ -3,12 +3,7 @@
 
 <?php loadPartial('navbar'); ?>
 
-<?php
-$name = $email = $password = $confirm_password = "";
 
-
-
-?>
 <main class="container" style="margin-top: 50px; margin-bottom: 50px;">
     <div class="flex justify-center items-center mt-20">
         <div class="bg-white p-8 rounded-lg shadow-md w-full md:w-500 mx-6">
@@ -19,11 +14,15 @@ $name = $email = $password = $confirm_password = "";
                 <div class="col-lg-6">
                     <div class="bg-primary h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn"
                         data-wow-delay="0.4s">
-
-                        <form method="POST" action="<?php echo URLROOT; ?>/users/register">
+                        <?=
+                        loadPartial("errors", [
+                            "errors" => $errors ?? []
+                        ]);
+                        ?>
+                        <form method="POST" action="/auth/register">
                             <div class=" col-12 mb-4">
                                 <input type="text" name="name" class="form-control border-0" placeholder="Your name"
-                                    required style="height: 55px;" value="<?php echo $name ?>">
+                                    required style="height: 55px;" value="<?= $user['name'] ?? '' ?>">
 
                                 <div class="invalid-feedback">
                                     Please provide a valid name.
@@ -31,23 +30,21 @@ $name = $email = $password = $confirm_password = "";
                             </div>
                             <div class="col-12  mb-4">
                                 <input type="email" class="form-control border-0" name="email" placeholder="Your Email"
-                                    required style="height: 55px;" value="<?php echo $email ?>">
+                                    required style="height: 55px;" value="<?= $user['email'] ?? '' ?>">
                                 <div class="invalid-feedback">
                                     Please provide a valid email.
                                 </div>
                             </div>
                             <div class=" col-12 mb-4">
                                 <input type="password" name="password" class="form-control border-0"
-                                    placeholder="Your password" required minlength="4" style="height: 55px;"
-                                    value="<?php echo $password ?>">
+                                    placeholder="Your password" required minlength="4" style="height: 55px;">
                                 <div class="invalid-feedback">
                                     Please provide a valid password.
                                 </div>
                             </div>
                             <div class="col-12  mb-4">
-                                <input type="password" name="confirm_password" class=" form-control border-0"
-                                    placeholder="Your confirm password" required minlength="4" style="height: 55px;"
-                                    value="<?php echo $confirm_password ?>">
+                                <input type="password" name="password_confirmation" class=" form-control border-0"
+                                    placeholder="Your confirm password" required minlength="4" style="height: 55px;">
                                 <div class="invalid-feedback">
                                     Please provide a valid password.
                                 </div>

@@ -3,12 +3,7 @@
 
 <?php loadPartial('navbar'); ?>
 
-<?php
-$name = $email = $password  = "";
 
-
-
-?>
 <main class="container" style="padding-top: 50px; padding-bottom: 50px;">
     <div class=" flex justify-center items-center mt-20">
         <div class="bg-white p-8 rounded-lg shadow-md w-full md:w-500 ">
@@ -20,16 +15,20 @@ $name = $email = $password  = "";
                 <div class="col-lg-6">
                     <div class="bg-primary h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn"
                         data-wow-delay="0.4s">
-
-                        <form method="POST" action="">
+                        <?=
+                        loadPartial("errors", [
+                            "errors" => $errors ?? []
+                        ]);
+                        ?>
+                        <form method="POST" action="/auth/login">
 
                             <div class="col-12  mb-4">
-                                <input type="email" class="form-control border-0" placeholder="Your Email" required
-                                    style="height: 55px;">
+                                <input type="email" name="email" class=" form-control border-0" placeholder="Your Email"
+                                    required style="height: 55px;">
                             </div>
                             <div class="col-12  mb-4">
-                                <input type="password" class="form-control border-0" placeholder="Your password"
-                                    required minlength="4" style="height: 55px;">
+                                <input type="password" name="password" class="form-control border-0"
+                                    placeholder="Your password" required minlength="4" style="height: 55px;">
                             </div>
                             <div class="col-12  mb-4">
                                 <button class="btn btn-secondary w-100 py-3" type="submit">Log In</button>

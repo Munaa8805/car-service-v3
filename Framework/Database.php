@@ -1,7 +1,8 @@
 <?php
 
+namespace Framework;
 
-use Framework;
+use PDO;
 
 class Database
 {
@@ -17,7 +18,7 @@ class Database
 
         try {
             $this->conn = new PDO($dsn, $config['username'], $config['password'], $options);
-            // echo "Connected to database";
+            echo "Connected to database";
         } catch (PDOException $e) {
             throw new Exception("Database connection failed: {$e->getMessage()}");
         }
